@@ -76,3 +76,7 @@ class NwchemJob(Job):
         """
         if self.gzipped:
             gzip_dir(".")
+
+def test():
+    """Tiny test."""
+    print('Test Successful!')
