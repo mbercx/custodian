@@ -86,6 +86,14 @@ class NwchemErrorHandler(ErrorHandler):
                         t.theory_directives["nocgmin"] = ""
                 action = {"_set": {"tasks": [t.as_dict() for t in nwi.tasks]}}
                 actions.append(action)
+
+                # Test implementation of increasing damping
+                for task in nwi.tasks:
+                    task.theory_directives['convergence damp'] = 30
+
+                action = {"_set": {"tasks": [task.as_dict()
+                                             for task in nwi.tasks]}}
+                actions.append(action)
             else:
                 # For unimplemented errors, this should just cause the job to
                 # die.
